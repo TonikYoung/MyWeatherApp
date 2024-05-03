@@ -7,18 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CA52A662BE4BE6E00E8E23C /* PlacesOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA52A652BE4BE6E00E8E23C /* PlacesOfInterest.swift */; };
 		9CBE3B212BE431D9004D1FF8 /* MyWeatherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE3B202BE431D9004D1FF8 /* MyWeatherAppApp.swift */; };
 		9CBE3B232BE431D9004D1FF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE3B222BE431D9004D1FF8 /* ContentView.swift */; };
 		9CBE3B252BE431DB004D1FF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CBE3B242BE431DB004D1FF8 /* Assets.xcassets */; };
 		9CBE3B282BE431DB004D1FF8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CBE3B272BE431DB004D1FF8 /* Preview Assets.xcassets */; };
+		9CBE3B302BE43216004D1FF8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9CBE3B2F2BE43216004D1FF8 /* Alamofire */; };
+		9CBE3B322BE43216004D1FF8 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 9CBE3B312BE43216004D1FF8 /* AlamofireDynamic */; };
+		9CBE3B352BE432B7004D1FF8 /* WeatherEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE3B342BE432B7004D1FF8 /* WeatherEmoji.swift */; };
+		9CBE3B372BE432E8004D1FF8 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE3B362BE432E8004D1FF8 /* BackgroundColor.swift */; };
+		9CBE3B3B2BE4334F004D1FF8 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE3B3A2BE4334F004D1FF8 /* Models.swift */; };
+		9CBE3B3F2BE43A99004D1FF8 /* DateAndTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE3B3E2BE43A99004D1FF8 /* DateAndTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9CA52A652BE4BE6E00E8E23C /* PlacesOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesOfInterest.swift; sourceTree = "<group>"; };
 		9CBE3B1D2BE431D9004D1FF8 /* MyWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBE3B202BE431D9004D1FF8 /* MyWeatherAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeatherAppApp.swift; sourceTree = "<group>"; };
 		9CBE3B222BE431D9004D1FF8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9CBE3B242BE431DB004D1FF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CBE3B272BE431DB004D1FF8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9CBE3B332BE43254004D1FF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9CBE3B342BE432B7004D1FF8 /* WeatherEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEmoji.swift; sourceTree = "<group>"; };
+		9CBE3B362BE432E8004D1FF8 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
+		9CBE3B3A2BE4334F004D1FF8 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		9CBE3B3E2BE43A99004D1FF8 /* DateAndTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,12 +39,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CBE3B302BE43216004D1FF8 /* Alamofire in Frameworks */,
+				9CBE3B322BE43216004D1FF8 /* AlamofireDynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9CA52A622BE4AF1B00E8E23C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9CBE3B3A2BE4334F004D1FF8 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9CA52A632BE4AF3D00E8E23C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9CBE3B222BE431D9004D1FF8 /* ContentView.swift */,
+				9CA52A652BE4BE6E00E8E23C /* PlacesOfInterest.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9CA52A642BE4AF5F00E8E23C /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				9CBE3B3E2BE43A99004D1FF8 /* DateAndTime.swift */,
+				9CBE3B362BE432E8004D1FF8 /* BackgroundColor.swift */,
+				9CBE3B342BE432B7004D1FF8 /* WeatherEmoji.swift */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
 		9CBE3B142BE431D8004D1FF8 = {
 			isa = PBXGroup;
 			children = (
@@ -51,9 +93,12 @@
 		9CBE3B1F2BE431D9004D1FF8 /* MyWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				9CA52A642BE4AF5F00E8E23C /* Functions */,
+				9CA52A632BE4AF3D00E8E23C /* Views */,
+				9CA52A622BE4AF1B00E8E23C /* Models */,
 				9CBE3B202BE431D9004D1FF8 /* MyWeatherAppApp.swift */,
-				9CBE3B222BE431D9004D1FF8 /* ContentView.swift */,
 				9CBE3B242BE431DB004D1FF8 /* Assets.xcassets */,
+				9CBE3B332BE43254004D1FF8 /* Info.plist */,
 				9CBE3B262BE431DB004D1FF8 /* Preview Content */,
 			);
 			path = MyWeatherApp;
@@ -83,6 +128,10 @@
 			dependencies = (
 			);
 			name = MyWeatherApp;
+			packageProductDependencies = (
+				9CBE3B2F2BE43216004D1FF8 /* Alamofire */,
+				9CBE3B312BE43216004D1FF8 /* AlamofireDynamic */,
+			);
 			productName = MyWeatherApp;
 			productReference = 9CBE3B1D2BE431D9004D1FF8 /* MyWeatherApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +160,9 @@
 				Base,
 			);
 			mainGroup = 9CBE3B142BE431D8004D1FF8;
+			packageReferences = (
+				9CBE3B2E2BE43216004D1FF8 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 9CBE3B1E2BE431D9004D1FF8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +189,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CBE3B3F2BE43A99004D1FF8 /* DateAndTime.swift in Sources */,
 				9CBE3B232BE431D9004D1FF8 /* ContentView.swift in Sources */,
 				9CBE3B212BE431D9004D1FF8 /* MyWeatherAppApp.swift in Sources */,
+				9CBE3B3B2BE4334F004D1FF8 /* Models.swift in Sources */,
+				9CBE3B352BE432B7004D1FF8 /* WeatherEmoji.swift in Sources */,
+				9CBE3B372BE432E8004D1FF8 /* BackgroundColor.swift in Sources */,
+				9CA52A662BE4BE6E00E8E23C /* PlacesOfInterest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +332,7 @@
 				DEVELOPMENT_TEAM = W2U9XFG7BD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyWeatherApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +362,7 @@
 				DEVELOPMENT_TEAM = W2U9XFG7BD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyWeatherApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -344,6 +403,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9CBE3B2E2BE43216004D1FF8 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9CBE3B2F2BE43216004D1FF8 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9CBE3B2E2BE43216004D1FF8 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		9CBE3B312BE43216004D1FF8 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9CBE3B2E2BE43216004D1FF8 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9CBE3B152BE431D8004D1FF8 /* Project object */;
 }
