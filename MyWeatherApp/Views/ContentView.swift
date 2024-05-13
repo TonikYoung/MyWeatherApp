@@ -31,30 +31,37 @@ struct ContentView: View {
         } else {
             NavigationView {
                 VStack {
-                    Spacer()
-                    TextField("Введите название города", text: $query)
-                        .textFieldStyle(PlainTextFieldStyle())
-                        .background(
-                            Rectangle()
-                                .foregroundColor(.white.opacity(0.2))
-                                .cornerRadius(25)
-                                .frame(height: 50)
-                        )
-                        .padding(.leading, 40)
-                        .padding(.trailing, 40)
-                        .padding(.bottom, 15)
-                        .padding(.top, textFieldHeight)
-                        .multilineTextAlignment(.center)
-                        .accentColor(.white)
-                        .font(Font.system(size: 20, design: .default))
-                        .onSubmit {
-                            Task {
-                                await fetchWeather(query: query)
+                    HStack {
+                        TextField("Введите название города", text: $query)
+                            .textFieldStyle(PlainTextFieldStyle())
+                            .background(
+                                Rectangle()
+                                    .foregroundColor(.white.opacity(0.2))
+                                    .cornerRadius(25)
+                                    .frame(height: 50)
+                            )
+                            .padding(.leading, 60)
+                            .padding(.trailing, 5)
+                            .padding(.bottom, 15)
+                            .padding(.top, textFieldHeight)
+                            .multilineTextAlignment(.center)
+                            .accentColor(.white)
+                            .font(Font.system(size: 20, design: .default))
+                            .onSubmit {
+                                Task {
+                                    await fetchWeather(query: query)
+                                }
+                                withAnimation {
+                                    textFieldHeight = 15
+                                }
                             }
-                            withAnimation {
-                                textFieldHeight = 15
-                            }
-                        }
+                        NavigationLink(destination: CitySelection() , label: {
+                            Image(systemName: "plus.magnifyingglass")
+                                .font(.system(size: 40))
+                                
+                        })
+                        Spacer()
+                    }
                     Text("\(cityName)")
                         .font(.system(size: 35))
                         .foregroundStyle(.white)
