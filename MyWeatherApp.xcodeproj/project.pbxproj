@@ -18,6 +18,7 @@
 		9CBE3B372BE432E8004D1FF8 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE3B362BE432E8004D1FF8 /* BackgroundColor.swift */; };
 		9CBE3B3B2BE4334F004D1FF8 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE3B3A2BE4334F004D1FF8 /* Models.swift */; };
 		9CBE3B3F2BE43A99004D1FF8 /* DateAndTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE3B3E2BE43A99004D1FF8 /* DateAndTime.swift */; };
+		AA2DBE1B2BF251A0008681E4 /* CitySelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DBE1A2BF251A0008681E4 /* CitySelection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		9CBE3B362BE432E8004D1FF8 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		9CBE3B3A2BE4334F004D1FF8 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		9CBE3B3E2BE43A99004D1FF8 /* DateAndTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndTime.swift; sourceTree = "<group>"; };
+		AA2DBE1A2BF251A0008681E4 /* CitySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				9CBE3B222BE431D9004D1FF8 /* ContentView.swift */,
 				9CA52A652BE4BE6E00E8E23C /* PlacesOfInterest.swift */,
+				AA2DBE1A2BF251A0008681E4 /* CitySelection.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				9CBE3B212BE431D9004D1FF8 /* MyWeatherAppApp.swift in Sources */,
 				9CBE3B3B2BE4334F004D1FF8 /* Models.swift in Sources */,
 				9CBE3B352BE432B7004D1FF8 /* WeatherEmoji.swift in Sources */,
+				AA2DBE1B2BF251A0008681E4 /* CitySelection.swift in Sources */,
 				9CBE3B372BE432E8004D1FF8 /* BackgroundColor.swift in Sources */,
 				9CA52A662BE4BE6E00E8E23C /* PlacesOfInterest.swift in Sources */,
 			);
