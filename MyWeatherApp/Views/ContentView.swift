@@ -57,7 +57,7 @@ struct ContentView: View {
                                     textFieldHeight = 15
                                 }
                             }
-                        NavigationLink(destination: CitySelection(backgroundColor: $backgroundColor) , label: {
+                        NavigationLink(destination: CitySelection(backgroundColor: backgroundColor) , label: {
                             Image(systemName: "plus.magnifyingglass")
                                 .font(.system(size: 40))
                                 
