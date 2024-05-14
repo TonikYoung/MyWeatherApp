@@ -9,10 +9,11 @@ import SwiftUI
 
 struct CitySelection: View {
     
-    @Binding var backgroundColor: Color
+    var backgroundColor: Color
     @ObservedObject var viewModel = CityListViewModel()
     @State private var userInput = ""
-    
+
+ 
     var body: some View {
         
         NavigationView {
@@ -63,5 +64,5 @@ struct CitySelection: View {
 
 
 #Preview {
-    CitySelection(backgroundColor: .constant(.blue))
+    CitySelection(backgroundColor: .blue)
 }
