@@ -50,12 +50,14 @@ struct ContentView: View {
                             .onSubmit {
                                 Task {
                                     await fetchWeather(query: query)
+                                    query = ""
                                 }
+
                                 withAnimation {
                                     textFieldHeight = 15
                                 }
                             }
-                        NavigationLink(destination: CitySelection() , label: {
+                        NavigationLink(destination: CitySelection(backgroundColor: $backgroundColor) , label: {
                             Image(systemName: "plus.magnifyingglass")
                                 .font(.system(size: 40))
                                 
@@ -122,7 +124,6 @@ struct ContentView: View {
                         .padding(.top, 12)
                     List {
                         ForEach(Array(results.enumerated()), id: \.1.id) { index, forecast in
-                          
                                 HStack(alignment: .center, spacing: 100) {
                                     Text("\(getShortDate(epoch: forecast.date_epoch))")
                                         .frame(maxWidth: 50, alignment: .leading)
