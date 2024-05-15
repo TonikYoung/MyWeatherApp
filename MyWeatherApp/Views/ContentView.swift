@@ -12,13 +12,13 @@ struct ContentView: View {
     @State private var weatherEmoji = "🌨️"
     @State private var currentTemp = 0
     @State private var cityName = "Москва"
-    @State private var loading = true
+    @State private var isLoading = true
 
         
     var body: some View {
-        if loading {
-           loadingView
-        } else {
+        //if isLoading {
+        //   loadingView
+        //} else {
             NavigationView {
                 VStack {
                  searchLayer
@@ -29,8 +29,14 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 .background(backgroundColor)
             }
+            .progress(isLoading: isLoading, backgroundColor: backgroundColor)
+            .onAppear {
+                Task {
+                    await fetchWeather(query: "")
+                }
+            }
             .accentColor(.white)
-        }
+        
     }
     
     var currentWeatherLayer: some View {
@@ -51,7 +57,7 @@ struct ContentView: View {
         }
     }
     
-    var loadingView: some View {
+   /* var loadingView: some View {
         ZStack {
             Color.init(backgroundColor)
                 .ignoresSafeArea()
@@ -64,6 +70,7 @@ struct ContentView: View {
                 }
         }
     }
+    */
     
     var searchLayer: some View {
         HStack {
@@ -160,7 +167,7 @@ struct ContentView: View {
                 weatherEmoji = getWeatherEmoji(code: results[index].day.condition.code)
 
                 
-                loading = false
+                isLoading = false
             case .failure(let error):
                 print(error)
             }
