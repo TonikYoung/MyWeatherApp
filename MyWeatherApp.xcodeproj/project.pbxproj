@@ -21,6 +21,7 @@
 		AA2DBE1B2BF251A0008681E4 /* CitySelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DBE1A2BF251A0008681E4 /* CitySelection.swift */; };
 		AA2DBE1D2BF271C3008681E4 /* CityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DBE1C2BF271C3008681E4 /* CityItem.swift */; };
 		AA2DBE1F2BF27394008681E4 /* CityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DBE1E2BF27394008681E4 /* CityListViewModel.swift */; };
+		AA9EE4BE2BF491C000D7CB5C /* TextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9EE4BD2BF491C000D7CB5C /* TextExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		AA2DBE1A2BF251A0008681E4 /* CitySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySelection.swift; sourceTree = "<group>"; };
 		AA2DBE1C2BF271C3008681E4 /* CityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityItem.swift; sourceTree = "<group>"; };
 		AA2DBE1E2BF27394008681E4 /* CityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewModel.swift; sourceTree = "<group>"; };
+		AA9EE4BD2BF491C000D7CB5C /* TextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				9CA52A632BE4AF3D00E8E23C /* Views */,
 				9CA52A622BE4AF1B00E8E23C /* Models */,
 				9CBE3B202BE431D9004D1FF8 /* MyWeatherAppApp.swift */,
+				AA9EE4BC2BF4919A00D7CB5C /* Extensions */,
 				9CBE3B242BE431DB004D1FF8 /* Assets.xcassets */,
 				9CBE3B332BE43254004D1FF8 /* Info.plist */,
 				9CBE3B262BE431DB004D1FF8 /* Preview Content */,
@@ -119,6 +122,14 @@
 				9CBE3B272BE431DB004D1FF8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AA9EE4BC2BF4919A00D7CB5C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AA9EE4BD2BF491C000D7CB5C /* TextExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9EE4BE2BF491C000D7CB5C /* TextExtensions.swift in Sources */,
 				9CBE3B3F2BE43A99004D1FF8 /* DateAndTime.swift in Sources */,
 				9CBE3B232BE431D9004D1FF8 /* ContentView.swift in Sources */,
 				AA2DBE1D2BF271C3008681E4 /* CityItem.swift in Sources */,
