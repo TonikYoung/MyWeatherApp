@@ -11,14 +11,11 @@ struct ContentView: View {
     @State private var backgroundColor = Color.init(red: 47/255, green: 79/255, blue: 79/255)
     @State private var weatherEmoji = "🌨️"
     @State private var currentTemp = 0
-    @State private var cityName = UserDefaults.standard.string(forKey: "LastSearched")
+    @State private var cityName = AppData.city
     @State private var isLoading = true
     
     
     var body: some View {
-        //if isLoading {
-        //   loadingView
-        //} else {
         NavigationView {
             VStack {
                 searchLayer
@@ -32,7 +29,7 @@ struct ContentView: View {
         .progress(isLoading: isLoading, backgroundColor: backgroundColor)
         .onAppear {
             Task {
-                await fetchWeather(query: "", name: cityName ?? "Москва")
+                await fetchWeather(query: "", name: cityName)
             }
         }
         .accentColor(.white)
@@ -40,7 +37,7 @@ struct ContentView: View {
     
     var currentWeatherLayer: some View {
         VStack{
-            Text("\(String(describing: cityName ?? ""))")
+            Text("\(String(describing: cityName))")
                 .modeText(textSize: 35)
                 .bold()
             Group {
@@ -56,32 +53,17 @@ struct ContentView: View {
         }
     }
     
-    /* var loadingView: some View {
-     ZStack {
-     Color.init(backgroundColor)
-     .ignoresSafeArea()
-     ProgressView()
-     .scaleEffect(2, anchor: .center)
-     .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
-     .frame(maxWidth: .infinity, maxHeight: .infinity)
-     .task {
-     await fetchWeather(query: "")
-     }
-     }
-     }
-     */
-    
     var searchLayer: some View {
         HStack {
             TextField("Введите название города", text: $query)
                 .modeTextField()
                 .onSubmit {
                     Task {
-                        await fetchWeather(query: query, name: cityName!)
+                        await fetchWeather(query: query, name: cityName)
                         query = ""
                     }
                 }
-            NavigationLink(destination: CitySelection(currentCityName: cityName ?? "Москва", backgroundColor: backgroundColor) , label: {
+            NavigationLink(destination: CitySelection(currentCityName: cityName, backgroundColor: backgroundColor) , label: {
                 Image(systemName: "plus.magnifyingglass")
                     .font(.system(size: 40))
             })
@@ -155,7 +137,6 @@ struct ContentView: View {
         request.responseDecodable(of: Weather.self) { response in
             switch response.result {
             case .success(let weather):
-                //dump(weather)
                 results = weather.forecast.forecastday
                 var index = 0
                 if Date(timeIntervalSince1970: TimeInterval(results[0].date_epoch)).formatted(Date.FormatStyle().weekday(.abbreviated)) != Date().formatted(Date.FormatStyle().weekday(.abbreviated)) {
@@ -166,7 +147,7 @@ struct ContentView: View {
                 hourlyForecast = results[index].hour
                 backgroundColor = getBackgroundColor(code: results[index].day.condition.code)
                 weatherEmoji = getWeatherEmoji(code: results[index].day.condition.code)
-                UserDefaults.standard.set(cityName, forKey: "LastSearched")
+                AppData.city = cityName
                 
                 isLoading = false
             case .failure(let error):
