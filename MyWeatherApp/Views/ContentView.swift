@@ -11,37 +11,36 @@ struct ContentView: View {
     @State private var backgroundColor = Color.init(red: 47/255, green: 79/255, blue: 79/255)
     @State private var weatherEmoji = "🌨️"
     @State private var currentTemp = 0
-    @State private var cityName = "Москва"
+    @State private var cityName = UserDefaults.standard.string(forKey: "LastSearched")
     @State private var isLoading = true
-
-        
+    
+    
     var body: some View {
         //if isLoading {
         //   loadingView
         //} else {
-            NavigationView {
-                VStack {
-                 searchLayer
-                 currentWeatherLayer
-                 dailyForecastLayer
-                 furuteForecastLayer
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .background(backgroundColor)
+        NavigationView {
+            VStack {
+                searchLayer
+                currentWeatherLayer
+                dailyForecastLayer
+                furuteForecastLayer
             }
-            .progress(isLoading: isLoading, backgroundColor: backgroundColor)
-            .onAppear {
-                Task {
-                    await fetchWeather(query: "")
-                }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .background(backgroundColor)
+        }
+        .progress(isLoading: isLoading, backgroundColor: backgroundColor)
+        .onAppear {
+            Task {
+                await fetchWeather(query: "", name: cityName ?? "Москва")
             }
-            .accentColor(.white)
-        
+        }
+        .accentColor(.white)
     }
     
     var currentWeatherLayer: some View {
         VStack{
-            Text("\(cityName)")
+            Text("\(String(describing: cityName ?? ""))")
                 .modeText(textSize: 35)
                 .bold()
             Group {
@@ -57,20 +56,20 @@ struct ContentView: View {
         }
     }
     
-   /* var loadingView: some View {
-        ZStack {
-            Color.init(backgroundColor)
-                .ignoresSafeArea()
-            ProgressView()
-                .scaleEffect(2, anchor: .center)
-                .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .task {
-                    await fetchWeather(query: "")
-                }
-        }
-    }
-    */
+    /* var loadingView: some View {
+     ZStack {
+     Color.init(backgroundColor)
+     .ignoresSafeArea()
+     ProgressView()
+     .scaleEffect(2, anchor: .center)
+     .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+     .frame(maxWidth: .infinity, maxHeight: .infinity)
+     .task {
+     await fetchWeather(query: "")
+     }
+     }
+     }
+     */
     
     var searchLayer: some View {
         HStack {
@@ -78,11 +77,11 @@ struct ContentView: View {
                 .modeTextField()
                 .onSubmit {
                     Task {
-                        await fetchWeather(query: query)
+                        await fetchWeather(query: query, name: cityName!)
                         query = ""
                     }
                 }
-            NavigationLink(destination: CitySelection(currentCityName: cityName, backgroundColor: backgroundColor) , label: {
+            NavigationLink(destination: CitySelection(currentCityName: cityName ?? "Москва", backgroundColor: backgroundColor) , label: {
                 Image(systemName: "plus.magnifyingglass")
                     .font(.system(size: 40))
             })
@@ -140,13 +139,15 @@ struct ContentView: View {
         }
     }
     
-
     
     
-    func fetchWeather(query: String) async {
+    
+    func fetchWeather(query: String, name: String) async {
         var queryText = ""
-        if (query == "") {
+        if (name == "" ) && (query == ""){
             queryText = "http://api.weatherapi.com/v1/forecast.json?key=b5c6cfaa09514caca4e185212240205&q=Москва&days=3&aqi=no&alerts=no"
+        } else if (name != "") && (query == "") {
+            queryText = "http://api.weatherapi.com/v1/forecast.json?key=b5c6cfaa09514caca4e185212240205&q=\(name)&days=3&aqi=no&alerts=no"
         } else {
             queryText = "http://api.weatherapi.com/v1/forecast.json?key=b5c6cfaa09514caca4e185212240205&q=\(query)&days=3&aqi=no&alerts=no"
         }
@@ -165,7 +166,7 @@ struct ContentView: View {
                 hourlyForecast = results[index].hour
                 backgroundColor = getBackgroundColor(code: results[index].day.condition.code)
                 weatherEmoji = getWeatherEmoji(code: results[index].day.condition.code)
-
+                UserDefaults.standard.set(cityName, forKey: "LastSearched")
                 
                 isLoading = false
             case .failure(let error):
