@@ -9,6 +9,7 @@ import SwiftUI
 
 @propertyWrapper
 struct Storage {
+  
     private let key: String
     private let defaultValue: String
     
@@ -16,7 +17,7 @@ struct Storage {
         self.key = key
         self.defaultValue = defaultValue
     }
-    
+        
     var wrappedValue: String {
         get {
             // Читаю значение
@@ -29,7 +30,7 @@ struct Storage {
     }
 }
 
-struct AppData {
+class AppData {
     @Storage(key: "city_key", defaultValue: "")
-    static var city: String
+    var city: String
 }

@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct LoadingLayer: ViewModifier {
+struct LoadingViewModifier: ViewModifier {
     var isLoading: Bool
+
     var backgroundColor: Color
 
     func body(content: Content) -> some View {
@@ -29,6 +30,6 @@ struct LoadingLayer: ViewModifier {
 
 extension View {
     func progress(isLoading: Bool, backgroundColor: Color) -> some View {
-        modifier(LoadingLayer(isLoading: isLoading, backgroundColor: backgroundColor))
+        modifier(LoadingViewModifier(isLoading: isLoading, backgroundColor: backgroundColor))
     }
 }

@@ -11,9 +11,8 @@ struct ContentView: View {
     @State private var backgroundColor = Color.init(red: 47/255, green: 79/255, blue: 79/255)
     @State private var weatherEmoji = "🌨️"
     @State private var currentTemp = 0
-    @State private var cityName = AppData.city
     @State private var isLoading = true
-    
+    private var appData = AppData()
     
     var body: some View {
         NavigationView {
@@ -29,7 +28,13 @@ struct ContentView: View {
         .progress(isLoading: isLoading, backgroundColor: backgroundColor)
         .onAppear {
             Task {
-                await fetchWeather(query: "", name: cityName)
+                let defaultCityName: String
+                if appData.city.isEmpty {
+                    defaultCityName = "Москва"
+                } else {
+                    defaultCityName = appData.city
+                }
+                await fetchWeather(query: defaultCityName)
             }
         }
         .accentColor(.white)
@@ -37,7 +42,8 @@ struct ContentView: View {
     
     var currentWeatherLayer: some View {
         VStack{
-            Text(cityName)
+
+            Text(appData.city)
                 .modeText(textSize: 35)
                 .bold()
             Group {
@@ -59,11 +65,11 @@ struct ContentView: View {
                 .modeTextField()
                 .onSubmit {
                     Task {
-                        await fetchWeather(query: query, name: cityName)
+                        await fetchWeather(query: query)
                         query = ""
                     }
                 }
-            NavigationLink(destination: CitySelection(currentCityName: cityName, backgroundColor: backgroundColor) , label: {
+            NavigationLink(destination: CitySelection(currentCityName: appData.city, backgroundColor: backgroundColor) , label: {
                 Image(systemName: "plus.magnifyingglass")
                     .font(.system(size: 40))
             })
@@ -124,15 +130,10 @@ struct ContentView: View {
     
     
     
-    func fetchWeather(query: String, name: String) async {
+    func fetchWeather(query: String) async {
         var queryText = ""
-        if (name == "" ) && (query == ""){
-            queryText = "http://api.weatherapi.com/v1/forecast.json?key=b5c6cfaa09514caca4e185212240205&q=Москва&days=3&aqi=no&alerts=no"
-        } else if (name != "") && (query == "") {
-            queryText = "http://api.weatherapi.com/v1/forecast.json?key=b5c6cfaa09514caca4e185212240205&q=\(name)&days=3&aqi=no&alerts=no"
-        } else {
             queryText = "http://api.weatherapi.com/v1/forecast.json?key=b5c6cfaa09514caca4e185212240205&q=\(query)&days=3&aqi=no&alerts=no"
-        }
+ 
         let request = AF.request(queryText)
         request.responseDecodable(of: Weather.self) { response in
             switch response.result {
@@ -142,12 +143,12 @@ struct ContentView: View {
                 if Date(timeIntervalSince1970: TimeInterval(results[0].date_epoch)).formatted(Date.FormatStyle().weekday(.abbreviated)) != Date().formatted(Date.FormatStyle().weekday(.abbreviated)) {
                     index = 1
                 }
-                cityName = weather.location.name
+                appData.city = weather.location.name
                 currentTemp = Int(results[index].day.avgtemp_c)
                 hourlyForecast = results[index].hour
                 backgroundColor = getBackgroundColor(code: results[index].day.condition.code)
                 weatherEmoji = getWeatherEmoji(code: results[index].day.condition.code)
-                AppData.city = cityName
+                
                 
                 isLoading = false
             case .failure(let error):
