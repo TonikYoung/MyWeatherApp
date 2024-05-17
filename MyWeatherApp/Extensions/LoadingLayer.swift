@@ -10,6 +10,7 @@ import SwiftUI
 struct LoadingLayer: ViewModifier {
     var isLoading: Bool
     var backgroundColor: Color
+
     func body(content: Content) -> some View {
         if isLoading {
             ZStack {
