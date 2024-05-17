@@ -37,7 +37,7 @@ struct ContentView: View {
     
     var currentWeatherLayer: some View {
         VStack{
-            Text("\(String(describing: cityName))")
+            Text(cityName)
                 .modeText(textSize: 35)
                 .bold()
             Group {
