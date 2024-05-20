@@ -53,9 +53,11 @@ struct GenericStorage<Value> {
     private let defaultValue: Value
     private let storage: UserDefaults
     
-    init(wrappedValue defaultValue: Value,
-          key: String,
-          storage: UserDefaults = .standard) {
+    init(
+        wrappedValue defaultValue: Value,
+        key: String,
+        storage: UserDefaults = .standard
+    ) {
          self.defaultValue = defaultValue
          self.key = key
          self.storage = storage
