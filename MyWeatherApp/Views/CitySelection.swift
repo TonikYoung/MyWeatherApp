@@ -16,47 +16,43 @@ struct CitySelection: View {
 
  
     var body: some View {
-  
         
         NavigationView {
             VStack {
-                TextField("Введите название города", text: $userInput)
-                    .modeTextField()
-                    .padding(.trailing, 50)
-                    .onSubmit {
-                        viewModel.add(name: userInput)
-                        userInput = ""
-                    }
-                
+                searchBar
                 List {
-
-                    ForEach(viewModel.cities) { city in
-                        Text(city.cityName)
-                    }
-                    .onDelete(perform: viewModel.delete(index:))
-                    .listRowBackground(Color.white.blur(radius: 75).opacity(0.5))
-                    .modeTextView(size: 20)
+                    listOfCities
                 }
                 .contentMargins(.vertical, 0)
                 .scrollContentBackground(.hidden)
                 .preferredColorScheme(.dark)
-                
-                
             }
-
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .background(backgroundColor)
         }
         .onAppear {
             viewModel.add(name: currentCityName)
         }
-
     }
-        
+    
+    var searchBar: some View {
+        TextField("Введите название города", text: $userInput)
+            .modeTextField()
+            .padding(.trailing, 50)
+            .onSubmit {
+                viewModel.add(name: userInput)
+                userInput = ""
+            }
+    }
+    
+    var listOfCities: some View {
+        ForEach(viewModel.cities) { city in
+            Text(city.cityName)
+        }
+        .onDelete(perform: viewModel.delete(index:))
+        .listRowBackground(Color.white.blur(radius: 75).opacity(0.5))
+    }
 }
-
-
-
 
 
 #Preview {

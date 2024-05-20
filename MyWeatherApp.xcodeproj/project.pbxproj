@@ -23,7 +23,7 @@
 		AA2DBE1F2BF27394008681E4 /* CityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DBE1E2BF27394008681E4 /* CityListViewModel.swift */; };
 		AA9EE4BE2BF491C000D7CB5C /* TextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9EE4BD2BF491C000D7CB5C /* TextExtensions.swift */; };
 		AAC6FD762BF64F7100993BB6 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6FD752BF64F7100993BB6 /* Storage.swift */; };
-		AAD535CE2BF5036D005D83B0 /* LoadingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD535CD2BF5036D005D83B0 /* LoadingLayer.swift */; };
+		AAD535CE2BF5036D005D83B0 /* LoadingviewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD535CD2BF5036D005D83B0 /* LoadingviewModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +43,7 @@
 		AA2DBE1E2BF27394008681E4 /* CityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewModel.swift; sourceTree = "<group>"; };
 		AA9EE4BD2BF491C000D7CB5C /* TextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtensions.swift; sourceTree = "<group>"; };
 		AAC6FD752BF64F7100993BB6 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		AAD535CD2BF5036D005D83B0 /* LoadingLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingLayer.swift; sourceTree = "<group>"; };
+		AAD535CD2BF5036D005D83B0 /* LoadingviewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingviewModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				AA9EE4BD2BF491C000D7CB5C /* TextExtensions.swift */,
-				AAD535CD2BF5036D005D83B0 /* LoadingLayer.swift */,
+				AAD535CD2BF5036D005D83B0 /* LoadingviewModifier.swift */,
 				AAC6FD752BF64F7100993BB6 /* Storage.swift */,
 			);
 			path = Extensions;
@@ -215,7 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAD535CE2BF5036D005D83B0 /* LoadingLayer.swift in Sources */,
+				AAD535CE2BF5036D005D83B0 /* LoadingviewModifier.swift in Sources */,
 				AA9EE4BE2BF491C000D7CB5C /* TextExtensions.swift in Sources */,
 				9CBE3B3F2BE43A99004D1FF8 /* DateAndTime.swift in Sources */,
 				9CBE3B232BE431D9004D1FF8 /* ContentView.swift in Sources */,

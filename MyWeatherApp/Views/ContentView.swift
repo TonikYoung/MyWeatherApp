@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var weatherEmoji = "🌨️"
     @State private var currentTemp = 0
     @State private var isLoading = true
-    private var appData = AppData()
+    private var appData = GenericAppData()
     
     var body: some View {
         NavigationView {

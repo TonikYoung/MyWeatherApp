@@ -18,6 +18,8 @@ class CityListViewModel: ObservableObject {
     func delete(index: IndexSet) {
         cities.remove(atOffsets: index)
     }
+    
+
 }
 
 
