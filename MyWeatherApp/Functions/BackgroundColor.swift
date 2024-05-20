@@ -3,7 +3,6 @@ import SwiftUI
 import Foundation
 
 func getBackgroundColor(code: Int) -> Color {
-    
     var backgroundColor = Color.init(red: 40/255, green: 70/255, blue: 70/255)
     switch code {
     case 1000, 1003:

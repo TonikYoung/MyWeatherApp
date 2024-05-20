@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct CitySelection: View {
-    
     var currentCityName: String
     var backgroundColor: Color
     @ObservedObject var viewModel = CityListViewModel()
     @State private var userInput = ""
 
- 
     var body: some View {
-        
         NavigationView {
             VStack {
                 searchBar
@@ -34,7 +31,7 @@ struct CitySelection: View {
             viewModel.add(name: currentCityName)
         }
     }
-    
+
     var searchBar: some View {
         TextField("Введите название города", text: $userInput)
             .modeTextField()
@@ -44,7 +41,7 @@ struct CitySelection: View {
                 userInput = ""
             }
     }
-    
+
     var listOfCities: some View {
         ForEach(viewModel.cities) { city in
             Text(city.cityName)
@@ -53,7 +50,6 @@ struct CitySelection: View {
         .listRowBackground(Color.white.blur(radius: 75).opacity(0.5))
     }
 }
-
 
 #Preview {
     CitySelection(currentCityName: "Москва", backgroundColor: .blue)

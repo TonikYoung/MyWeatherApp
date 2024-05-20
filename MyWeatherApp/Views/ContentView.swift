@@ -3,7 +3,6 @@ import SwiftUI
 import Alamofire
 
 struct ContentView: View {
-    
     @State private var results = [ForecastDay]()
     @State private var hourlyForecast = [Hour]()
     @State private var query: String = ""
@@ -13,7 +12,7 @@ struct ContentView: View {
     @State private var currentTemp = 0
     @State private var isLoading = true
     private var appData = GenericAppData()
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -39,10 +38,9 @@ struct ContentView: View {
         }
         .accentColor(.white)
     }
-    
+
     var currentWeatherLayer: some View {
         VStack{
-
             Text(appData.city)
                 .modeText(textSize: 35)
                 .bold()
@@ -58,7 +56,7 @@ struct ContentView: View {
             Spacer()
         }
     }
-    
+
     var searchLayer: some View {
         HStack {
             TextField("Введите название города", text: $query)
@@ -76,7 +74,7 @@ struct ContentView: View {
             Spacer()
         }
     }
-    
+
     var dailyForecastLayer: some View {
         VStack {
             Text("Прогноз на весь день")
@@ -104,7 +102,7 @@ struct ContentView: View {
             Spacer()
         }
     }
-    
+
     var furuteForecastLayer: some View {
         VStack{
             Text("Прогноз на 3 дня")
@@ -117,7 +115,6 @@ struct ContentView: View {
                         Text("\(Int(forecast.day.avgtemp_c))°C")
                     }
                     .modeTextView(size: 17)
-                    
                 }
                 .listRowBackground(Color.white.blur(radius: 75).opacity(0.5))
             }
@@ -126,14 +123,11 @@ struct ContentView: View {
             .preferredColorScheme(.dark)
         }
     }
-    
-    
-    
-    
+
     func fetchWeather(query: String) async {
         var queryText = ""
-            queryText = "http://api.weatherapi.com/v1/forecast.json?key=b5c6cfaa09514caca4e185212240205&q=\(query)&days=3&aqi=no&alerts=no"
- 
+        queryText = "http://api.weatherapi.com/v1/forecast.json?key=b5c6cfaa09514caca4e185212240205&q=\(query)&days=3&aqi=no&alerts=no"
+
         let request = AF.request(queryText)
         request.responseDecodable(of: Weather.self) { response in
             switch response.result {
@@ -148,8 +142,6 @@ struct ContentView: View {
                 hourlyForecast = results[index].hour
                 backgroundColor = getBackgroundColor(code: results[index].day.condition.code)
                 weatherEmoji = getWeatherEmoji(code: results[index].day.condition.code)
-                
-                
                 isLoading = false
             case .failure(let error):
                 print(error)
@@ -157,8 +149,6 @@ struct ContentView: View {
         }
     }
 }
-
-
 
 #Preview {
     ContentView()

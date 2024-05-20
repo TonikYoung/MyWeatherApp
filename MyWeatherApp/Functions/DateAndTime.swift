@@ -4,7 +4,6 @@ import Foundation
 
 // сделать перевод на русский, самое простое попробовать через switch case
 func getShortDate(epoch: Int) -> String {
-    
     let normalDate = Date(timeIntervalSince1970: TimeInterval(epoch)).formatted(Date.FormatStyle().weekday(.abbreviated))
     var traslatedShordDate = ""
     switch normalDate {
@@ -32,15 +31,12 @@ func getShortDate(epoch: Int) -> String {
     default:
         break
     }
-
     return traslatedShordDate
 }
 
 
 func getShortTime(time: String) -> String {
-
     let shortTime = time.suffix(5)
-    
     return "\(shortTime)"
 }
 
@@ -61,7 +57,5 @@ func getTranslatedDate(date: String) -> String {
     } else if date.contains("Sunday") {
         correctedDate = "Воскресенье"
     }
-
-    
     return correctedDate
 }

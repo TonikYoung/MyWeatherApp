@@ -39,18 +39,18 @@ extension View {
 extension TextField {
     func modeTextField() -> some View {
         self.textFieldStyle(PlainTextFieldStyle())
-        .background(
-            Rectangle()
-                .foregroundColor(.white.opacity(0.2))
-                .cornerRadius(25)
-                .frame(height: 50)
-        )
-        .padding(.leading, 60)
-        .padding(.trailing, 5)
-        .padding(.bottom, 15)
-        .padding(.top, 15)
-        .multilineTextAlignment(.center)
-        .accentColor(.white)
-        .font(Font.system(size: 20, design: .default))
+            .background(
+                Rectangle()
+                    .foregroundColor(.white.opacity(0.2))
+                    .cornerRadius(25)
+                    .frame(height: 50)
+            )
+            .padding(.leading, 60)
+            .padding(.trailing, 5)
+            .padding(.bottom, 15)
+            .padding(.top, 15)
+            .multilineTextAlignment(.center)
+            .accentColor(.white)
+            .font(Font.system(size: 20, design: .default))
     }
 }

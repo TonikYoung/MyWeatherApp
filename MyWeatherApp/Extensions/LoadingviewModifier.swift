@@ -9,9 +9,8 @@ import SwiftUI
 
 struct LoadingViewModifier: ViewModifier {
     var isLoading: Bool
-
     var backgroundColor: Color
-
+    
     func body(content: Content) -> some View {
         if isLoading {
             ZStack {
