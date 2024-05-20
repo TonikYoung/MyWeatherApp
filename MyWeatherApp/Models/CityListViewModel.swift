@@ -12,12 +12,10 @@ class CityListViewModel: ObservableObject {
     
     func add(name: String) {
         let newCity = CityItem(cityName: name)
-            cities.append(newCity)
+        cities.append(newCity)
     }
     
     func delete(index: IndexSet) {
         cities.remove(atOffsets: index)
     }
 }
-
-

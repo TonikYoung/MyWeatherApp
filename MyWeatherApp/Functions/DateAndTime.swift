@@ -31,15 +31,12 @@ func getShortDate(epoch: Int) -> String {
     default:
         break
     }
-
     return traslatedShordDate
 }
 
 
 func getShortTime(time: String) -> String {
-
     let shortTime = time.suffix(5)
-    
     return "\(shortTime)"
 }
 
@@ -60,7 +57,5 @@ func getTranslatedDate(date: String) -> String {
     } else if date.contains("Sunday") {
         correctedDate = "Воскресенье"
     }
-
-    
     return correctedDate
 }
