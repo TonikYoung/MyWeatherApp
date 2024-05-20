@@ -28,10 +28,10 @@ struct GenericStorage<Value> {
         key: String,
         storage: UserDefaults = .standard
     ) {
-        self.defaultValue = defaultValue
-        self.key = key
-        self.storage = storage
-    }
+         self.defaultValue = defaultValue
+         self.key = key
+         self.storage = storage
+     }
 }
 
 class GenericAppData {
