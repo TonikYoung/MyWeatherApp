@@ -7,9 +7,10 @@
 
 import Foundation
 
-class CityListViewModel: ObservableObject {
+final class CityListViewModel: ObservableObject {
     @Published var cities: [CityItem] = [CityItem(cityName: "Москва")]
-    
+    @Published var userInput = ""
+
     func add(name: String) {
         let newCity = CityItem(cityName: name)
         cities.append(newCity)

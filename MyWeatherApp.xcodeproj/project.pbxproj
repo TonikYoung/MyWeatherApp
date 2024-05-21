@@ -23,6 +23,7 @@
 		AA2DBE1F2BF27394008681E4 /* CityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DBE1E2BF27394008681E4 /* CityListViewModel.swift */; };
 		AA9EE4BE2BF491C000D7CB5C /* TextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9EE4BD2BF491C000D7CB5C /* TextExtensions.swift */; };
 		AAC6FD762BF64F7100993BB6 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6FD752BF64F7100993BB6 /* Storage.swift */; };
+		AAC8BE262BFC7B2500C52B0E /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC8BE252BFC7B2500C52B0E /* ContentView-ViewModel.swift */; };
 		AAD535CE2BF5036D005D83B0 /* LoadingviewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD535CD2BF5036D005D83B0 /* LoadingviewModifier.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		AA2DBE1E2BF27394008681E4 /* CityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewModel.swift; sourceTree = "<group>"; };
 		AA9EE4BD2BF491C000D7CB5C /* TextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtensions.swift; sourceTree = "<group>"; };
 		AAC6FD752BF64F7100993BB6 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		AAC8BE252BFC7B2500C52B0E /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		AAD535CD2BF5036D005D83B0 /* LoadingviewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingviewModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +67,7 @@
 				9CBE3B3A2BE4334F004D1FF8 /* Models.swift */,
 				AA2DBE1C2BF271C3008681E4 /* CityItem.swift */,
 				AA2DBE1E2BF27394008681E4 /* CityListViewModel.swift */,
+				AAC8BE252BFC7B2500C52B0E /* ContentView-ViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				9CBE3B3F2BE43A99004D1FF8 /* DateAndTime.swift in Sources */,
 				9CBE3B232BE431D9004D1FF8 /* ContentView.swift in Sources */,
 				AAC6FD762BF64F7100993BB6 /* Storage.swift in Sources */,
+				AAC8BE262BFC7B2500C52B0E /* ContentView-ViewModel.swift in Sources */,
 				AA2DBE1D2BF271C3008681E4 /* CityItem.swift in Sources */,
 				9CBE3B212BE431D9004D1FF8 /* MyWeatherAppApp.swift in Sources */,
 				9CBE3B3B2BE4334F004D1FF8 /* Models.swift in Sources */,

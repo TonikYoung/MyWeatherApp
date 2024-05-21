@@ -3,16 +3,8 @@ import SwiftUI
 import Alamofire
 
 struct ContentView: View {
-    @State private var results = [ForecastDay]()
-    @State private var hourlyForecast = [Hour]()
-    @State private var query: String = ""
-    @State private var contentSize: CGSize = .zero
-    @State private var backgroundColor = Color.init(red: 47/255, green: 79/255, blue: 79/255)
-    @State private var weatherEmoji = "🌨️"
-    @State private var currentTemp = 0
-    @State private var isLoading = true
-    private var appData = GenericAppData()
-
+    @StateObject private var viewModel = ContentViewModel()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -22,26 +14,18 @@ struct ContentView: View {
                 furuteForecastLayer
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .background(backgroundColor)
+            .background(viewModel.backgroundColor)
         }
-        .progress(isLoading: isLoading, backgroundColor: backgroundColor)
+        .progress(isLoading: viewModel.isLoading, backgroundColor: viewModel.backgroundColor)
         .onAppear {
-            Task {
-                let defaultCityName: String
-                if appData.city.isEmpty {
-                    defaultCityName = "Москва"
-                } else {
-                    defaultCityName = appData.city
-                }
-                await fetchWeather(query: defaultCityName)
-            }
+            viewModel.loadingTask()
         }
         .accentColor(.white)
     }
-
+    
     var currentWeatherLayer: some View {
         VStack{
-            Text(appData.city)
+            Text(viewModel.appData.city)
                 .modeText(textSize: 35)
                 .bold()
             Group {
@@ -49,32 +33,32 @@ struct ContentView: View {
                 Text("\(getTranslatedDate(date: (Date().formatted(date: .complete, time: .omitted))))")
             }
             .modeTextView(size: 16)
-            Text(weatherEmoji)
+            Text(viewModel.weatherEmoji)
                 .modeText(textSize: 120)
-            Text("\(currentTemp)°C")
+            Text("\(viewModel.currentTemp)°C")
                 .modeText(textSize: 50)
             Spacer()
         }
     }
-
+    
     var searchLayer: some View {
         HStack {
-            TextField("Введите название города", text: $query)
+            TextField("Введите название города", text: $viewModel.query)
                 .modeTextField()
                 .onSubmit {
                     Task {
-                        await fetchWeather(query: query)
-                        query = ""
+                        await viewModel.fetchWeather(query: viewModel.query)
+                        viewModel.query = ""
                     }
                 }
-            NavigationLink(destination: CitySelection(currentCityName: appData.city, backgroundColor: backgroundColor) , label: {
+            NavigationLink(destination: CitySelection(currentCityName: viewModel.appData.city, backgroundColor: viewModel.backgroundColor) , label: {
                 Image(systemName: "plus.magnifyingglass")
                     .font(.system(size: 40))
             })
             Spacer()
         }
     }
-
+    
     var dailyForecastLayer: some View {
         VStack {
             Text("Прогноз на весь день")
@@ -82,7 +66,7 @@ struct ContentView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     Spacer()
-                    ForEach(hourlyForecast) { forecast in
+                    ForEach(viewModel.hourlyForecast) { forecast in
                         VStack {
                             Text("\(getShortTime(time: forecast.time))")
                             Text("\(getWeatherEmoji(code:forecast.condition.code))")
@@ -102,13 +86,13 @@ struct ContentView: View {
             Spacer()
         }
     }
-
+    
     var furuteForecastLayer: some View {
         VStack{
             Text("Прогноз на 3 дня")
                 .modeHeaderText(textSize: 17)
             List {
-                ForEach(Array(results.enumerated()), id: \.1.id) { index, forecast in
+                ForEach(Array(viewModel.results.enumerated()), id: \.1.id) { index, forecast in
                     HStack(alignment: .center, spacing: 100) {
                         Text("\(getShortDate(epoch: forecast.date_epoch))")
                         Text("\(getWeatherEmoji(code: forecast.day.condition.code))")
@@ -121,31 +105,6 @@ struct ContentView: View {
             .contentMargins(.vertical, 0)
             .scrollContentBackground(.hidden)
             .preferredColorScheme(.dark)
-        }
-    }
-
-    func fetchWeather(query: String) async {
-        var queryText = ""
-        queryText = "http://api.weatherapi.com/v1/forecast.json?key=b5c6cfaa09514caca4e185212240205&q=\(query)&days=3&aqi=no&alerts=no"
-
-        let request = AF.request(queryText)
-        request.responseDecodable(of: Weather.self) { response in
-            switch response.result {
-            case .success(let weather):
-                results = weather.forecast.forecastday
-                var index = 0
-                if Date(timeIntervalSince1970: TimeInterval(results[0].date_epoch)).formatted(Date.FormatStyle().weekday(.abbreviated)) != Date().formatted(Date.FormatStyle().weekday(.abbreviated)) {
-                    index = 1
-                }
-                appData.city = weather.location.name
-                currentTemp = Int(results[index].day.avgtemp_c)
-                hourlyForecast = results[index].hour
-                backgroundColor = getBackgroundColor(code: results[index].day.condition.code)
-                weatherEmoji = getWeatherEmoji(code: results[index].day.condition.code)
-                isLoading = false
-            case .failure(let error):
-                print(error)
-            }
         }
     }
 }
