@@ -1,6 +1,5 @@
 
 import SwiftUI
-import Alamofire
 
 struct ForecastView: View {
     @StateObject private var forecastViewModel = ForecastViewModel()
