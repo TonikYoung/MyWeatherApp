@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct PlacesOfInterest: View {
-    
+struct PlacesOfInterestView: View {
+
     var body: some View {
         Text("Добавить сюда 6 кликабельных картинок, каждая ведет на новый экран с описанием, фото и адресом")
     }
 }
 
 #Preview {
-    PlacesOfInterest()
+    PlacesOfInterestView()
 }

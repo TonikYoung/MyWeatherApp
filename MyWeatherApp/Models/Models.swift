@@ -14,25 +14,46 @@ struct Location: Codable {
 }
 
 struct Forecast: Codable {
-    var forecastday: [ForecastDay]
+    var forecastDay: [ForecastDay]
+
+    enum CodingKeys: String, CodingKey {
+        case forecastDay = "forecastday"
+    }
 }
 
 struct ForecastDay: Codable, Identifiable {
-    var date_epoch: Int
+    var date: Int
     var day: Day
     var hour: [Hour]
-    var id: Int { date_epoch }
+    var id: Int { date }
+
+    enum CodingKeys: String, CodingKey {
+        case date = "date_epoch"
+        case day
+        case hour
+    }
 }
 
 struct Day: Codable {
-    var avgtemp_c: Double
-    var maxwind_kph: Double
-    var totalprecip_mm: Double
-    var daily_chance_of_rain: Int
-    var avghumidity: Int
+    var avgTemp: Double
+    var maxWindKph: Double
+    var totalPreciption: Double
+    var chanceOfRain: Int
+    var humidityAverage: Int
     var uv: Double
-    var avgvis_km: Double
+    var visAverage: Double
     var condition: Condition
+
+    enum CodingKeys: String, CodingKey {
+        case avgTemp = "avgtemp_c"
+        case maxWindKph = "maxwind_kph"
+        case totalPreciption = "totalprecip_mm"
+        case chanceOfRain = "daily_chance_of_rain"
+        case humidityAverage = "avghumidity"
+        case uv
+        case visAverage = "avgvis_km"
+        case condition
+    }
 }
 
 struct Condition: Codable {
@@ -41,10 +62,18 @@ struct Condition: Codable {
 }
 
 struct Hour: Codable, Identifiable {
-    var time_epoch: Int
+    var timeDate: Int
     var time: String
-    var temp_c: Double
+    var temp: Double
     var condition: Condition
-    var feelslike_c: Double
-    var id: Int { time_epoch }
+    var feelsLike: Double
+    var id: Int { timeDate }
+
+    enum CodingKeys: String, CodingKey {
+        case timeDate = "time_epoch"
+        case time
+        case temp = "temp_c"
+        case condition
+        case feelsLike = "feelslike_c"
+    }
 }

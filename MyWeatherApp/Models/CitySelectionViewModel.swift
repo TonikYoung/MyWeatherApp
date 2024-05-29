@@ -7,8 +7,9 @@
 
 import Foundation
 
-class CityListViewModel: ObservableObject {
+final class CitySelectionViewModel: ObservableObject {
     @Published var cities: [CityItem] = [CityItem(cityName: "Москва")]
+    @Published var userInput = ""
     
     func add(name: String) {
         let newCity = CityItem(cityName: name)

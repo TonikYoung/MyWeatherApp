@@ -1,4 +1,4 @@
-//
+///
 //  CitySelection.swift
 //  MyWeatherApp
 //
@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-struct CitySelection: View {
+struct CitySelectionView: View {
+    @ObservedObject var viewModel = CitySelectionViewModel()
     var currentCityName: String
     var backgroundColor: Color
-    @ObservedObject var viewModel = CityListViewModel()
-    @State private var userInput = ""
 
     var body: some View {
         NavigationView {
@@ -33,12 +32,12 @@ struct CitySelection: View {
     }
 
     var searchBar: some View {
-        TextField("Введите название города", text: $userInput)
+        TextField("Введите название города", text: $viewModel.userInput)
             .modeTextField()
             .padding(.trailing, 50)
             .onSubmit {
-                viewModel.add(name: userInput)
-                userInput = ""
+                viewModel.add(name: viewModel.userInput)
+                viewModel.userInput = ""
             }
     }
 
@@ -52,5 +51,5 @@ struct CitySelection: View {
 }
 
 #Preview {
-    CitySelection(currentCityName: "Москва", backgroundColor: .blue)
+    CitySelectionView(currentCityName: "Москва", backgroundColor: .blue)
 }
