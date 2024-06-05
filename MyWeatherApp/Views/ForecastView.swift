@@ -16,9 +16,6 @@ struct ForecastView: View {
             .background(forecastViewModel.backgroundColor)
         }
         .progress(isLoading: forecastViewModel.isLoading, backgroundColor: forecastViewModel.backgroundColor)
-        .onAppear {
-            forecastViewModel.loadingTask()
-        }
         .accentColor(.white)
     }
 

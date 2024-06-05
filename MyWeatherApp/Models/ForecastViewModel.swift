@@ -6,6 +6,7 @@
 //
 import Foundation
 import SwiftUI
+import Combine
 
 // модель для загрузки данных погоды
 struct ForecastData: Identifiable {
@@ -25,8 +26,13 @@ final class ForecastViewModel: ObservableObject {
     @Published var weatherEmoji = "🌨️"
     @Published var isLoading = true
     @Published var query = ""
-    @Published var defaultCityName = ""
+    @Published var defaultCityName = "Москва"
+    @ObservedObject var locationManager = LocationManager()
     var forecastModelObject = ForecastModel()
+    private var subscribers: Set<AnyCancellable> = []
+    var placemark: String { return("\(locationManager.placemark?.locality ?? defaultCityName)") }
+
+
 
     func fetchWeather(city: String) {
         forecastModelObject.loadWeather(query: city) { [self] result in
@@ -54,17 +60,29 @@ final class ForecastViewModel: ObservableObject {
         }
     }
 
-    func loadingTask() {
-        if appData.city.isEmpty {
-            defaultCityName = "Москва"
-        } else {
-            defaultCityName = appData.city
-        }
-        fetchWeather(city: defaultCityName)
-    }
-
     func searchTask() {
         fetchWeather(city: query)
         query = ""
+    }
+
+    init(){
+        locationManager.$status.sink { [self] status in
+            if status == nil {
+                return
+            } else {
+                switch status {
+                case .notDetermined, .restricted, .denied:
+                    fetchWeather(city: defaultCityName)
+                case .authorizedWhenInUse, .authorizedAlways:
+                    locationManager.$placemark.sink { placemark in
+                        self.fetchWeather(city: self.placemark)
+                    }
+                    .store(in: &subscribers)
+                default:
+                    fetchWeather(city: defaultCityName)
+                }
+            }
+        }
+        .store(in: &subscribers)
     }
 }
