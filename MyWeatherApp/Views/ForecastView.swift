@@ -19,6 +19,7 @@ struct ForecastView: View {
         .accentColor(.white)
     }
 
+
     var searchWeather: some View {
         HStack {
             TextField("Введите название города", text: $forecastViewModel.query)
@@ -26,7 +27,10 @@ struct ForecastView: View {
                 .onSubmit {
                     forecastViewModel.searchTask()
                 }
-            NavigationLink(destination: CitySelectionView(currentCityName: forecastViewModel.appData.city, backgroundColor: forecastViewModel.backgroundColor) , label: {
+                .onAppear {
+                    forecastViewModel.searchTask()
+                }
+            NavigationLink(destination: CitySelectionView(cityFromList: $forecastViewModel.query) , label: {
                 Image(systemName: "plus.magnifyingglass")
                     .font(.system(size: 40))
             })

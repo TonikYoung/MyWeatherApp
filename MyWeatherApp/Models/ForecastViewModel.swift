@@ -28,6 +28,7 @@ final class ForecastViewModel: ObservableObject {
     @Published var query = ""
     @Published var defaultCityName = "Москва"
     @ObservedObject var locationManager = LocationManager()
+    @State private var cityFromList = ""
     var forecastModelObject = ForecastModel()
     private var subscribers: Set<AnyCancellable> = []
     var placemark: String { return("\(locationManager.placemark?.locality ?? defaultCityName)") }
@@ -61,8 +62,12 @@ final class ForecastViewModel: ObservableObject {
     }
 
     func searchTask() {
-        fetchWeather(city: query)
-        query = ""
+        if query != "" {
+            fetchWeather(city: query)
+            query = ""
+        } else {
+            return
+        }
     }
 
     init(){
