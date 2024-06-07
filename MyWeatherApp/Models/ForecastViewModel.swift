@@ -27,13 +27,12 @@ final class ForecastViewModel: ObservableObject {
     @Published var isLoading = true
     @Published var query = ""
     @Published var defaultCityName = "Москва"
-    @ObservedObject var locationManager = LocationManager()
-    @State private var cityFromList = ""
-    var forecastModelObject = ForecastModel()
-    private var subscribers: Set<AnyCancellable> = []
+    var locationManager = LocationManager()
     var placemark: String { return("\(locationManager.placemark?.locality ?? defaultCityName)") }
-
-
+    var forecastModelObject = ForecastModel()
+    @State private var cityFromList = ""
+    private var subscribers: AnyCancellable?
+    private var storeSubscrobers: Set<AnyCancellable> = []
 
     func fetchWeather(city: String) {
         forecastModelObject.loadWeather(query: city) { [self] result in
@@ -71,23 +70,33 @@ final class ForecastViewModel: ObservableObject {
     }
 
     init(){
-        locationManager.$status.sink { [self] status in
-            if status == nil {
-                return
-            } else {
+        locationManager.$status
+            .sink { [weak self] status in
+
+                guard let self else {
+                    return
+                }
+
+                guard let status else {
+                    return
+                }
+                subscribers?.cancel()
                 switch status {
                 case .notDetermined, .restricted, .denied:
                     fetchWeather(city: defaultCityName)
                 case .authorizedWhenInUse, .authorizedAlways:
-                    locationManager.$placemark.sink { placemark in
-                        self.fetchWeather(city: self.placemark)
-                    }
-                    .store(in: &subscribers)
-                default:
-                    fetchWeather(city: defaultCityName)
+                    subscribeToPlacemarks()
                 }
             }
+            .store(in: &storeSubscrobers)
+    }
+
+    func subscribeToPlacemarks() {
+        subscribers = locationManager.$placemark.sink { [weak self] placemark in
+            guard let self else {
+                return
+            }
+            fetchWeather(city: self.placemark)
         }
-        .store(in: &subscribers)
     }
 }
