@@ -16,11 +16,9 @@ struct ForecastView: View {
             .background(forecastViewModel.backgroundColor)
         }
         .progress(isLoading: forecastViewModel.isLoading, backgroundColor: forecastViewModel.backgroundColor)
-        .onAppear {
-            forecastViewModel.loadingTask()
-        }
         .accentColor(.white)
     }
+
 
     var searchWeather: some View {
         HStack {
@@ -29,7 +27,10 @@ struct ForecastView: View {
                 .onSubmit {
                     forecastViewModel.searchTask()
                 }
-            NavigationLink(destination: CitySelectionView(currentCityName: forecastViewModel.appData.city, backgroundColor: forecastViewModel.backgroundColor) , label: {
+                .onAppear {
+                    forecastViewModel.searchTask()
+                }
+            NavigationLink(destination: CitySelectionView(cityFromList: $forecastViewModel.query) , label: {
                 Image(systemName: "plus.magnifyingglass")
                     .font(.system(size: 40))
             })

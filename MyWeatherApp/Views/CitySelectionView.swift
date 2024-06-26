@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CitySelectionView: View {
     @ObservedObject var viewModel = CitySelectionViewModel()
-    var currentCityName: String
-    var backgroundColor: Color
+    @Environment(\.dismiss) var dismiss
+    @Binding var cityFromList: String
 
     var body: some View {
         NavigationView {
@@ -24,10 +24,7 @@ struct CitySelectionView: View {
                 .preferredColorScheme(.dark)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .background(backgroundColor)
-        }
-        .onAppear {
-            viewModel.add(name: currentCityName)
+            .background(viewModel.backgroundColor)
         }
     }
 
@@ -43,13 +40,19 @@ struct CitySelectionView: View {
 
     var listOfCities: some View {
         ForEach(viewModel.cities) { city in
-            Text(city.cityName)
-        }
+            HStack {
+                Text(city.cityName)
+                Spacer()
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                cityFromList = city.cityName
+                dismiss()
+                }
+            }
         .onDelete(perform: viewModel.delete(index:))
         .listRowBackground(Color.white.blur(radius: 75).opacity(0.5))
     }
 }
 
-#Preview {
-    CitySelectionView(currentCityName: "Москва", backgroundColor: .blue)
-}
+
