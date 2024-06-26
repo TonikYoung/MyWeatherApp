@@ -22,7 +22,7 @@ final class ForecastViewModel: ObservableObject {
     @Published var currentTemp = 0
     @Published var hourlyForecast = [ForecastData]()
     @Published var dailyForecast = [ForecastData]()
-    @Published var backgroundColor = Color.init(red: 47/255, green: 79/255, blue: 79/255)
+    @Published var backgroundColor = Color(UIColor(named: "BaseViewColor")!)
     @Published var weatherEmoji = "🌨️"
     @Published var isLoading = true
     @Published var query = ""

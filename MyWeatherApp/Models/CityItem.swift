@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CityItem: Identifiable, Equatable {
+struct CityItem: Identifiable, Equatable, Codable {
     var cityName: String
     var id = UUID()
 }
