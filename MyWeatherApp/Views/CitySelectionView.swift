@@ -41,12 +41,12 @@ struct CitySelectionView: View {
     var listOfCities: some View {
         ForEach(viewModel.cities) { city in
             HStack {
-                Text(city.cityName)
+                Text(city.name)
                 Spacer()
             }
             .contentShape(Rectangle())
             .onTapGesture {
-                cityFromList = city.cityName
+                cityFromList = city.name
                 dismiss()
                 }
             }

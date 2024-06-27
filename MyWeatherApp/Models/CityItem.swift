@@ -8,6 +8,6 @@
 import Foundation
 
 struct CityItem: Identifiable, Equatable, Codable {
-    var cityName: String
+    var name: String
     var id = UUID()
 }
