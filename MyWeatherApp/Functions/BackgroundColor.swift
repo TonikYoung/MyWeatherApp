@@ -1,4 +1,3 @@
-
 import SwiftUI
 import Foundation
 
@@ -18,8 +17,7 @@ extension Color {
     static func setColor(colorName: String) -> Color {
         if let color = UIColor(named: colorName) {
             Color(uiColor: color)
-        }
-        else {
+        } else {
             Color.gray
         }
     }

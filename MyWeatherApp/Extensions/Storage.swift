@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//Дженерик способный принимать любое значение (строка, бул, инт и прочее)
+
 @propertyWrapper
 struct GenericStorage<Value> {
     var wrappedValue: Value {

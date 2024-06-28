@@ -21,8 +21,7 @@ final class CitySelectionViewModel: ObservableObject {
         do {
             let fetchedCities = try PropertyListDecoder().decode([CityItem].self, from: citiesStorage)
             cities = fetchedCities
-        }
-        catch {
+        } catch {
             print("Error while decoding cities")
         }
     }
@@ -44,8 +43,7 @@ final class CitySelectionViewModel: ObservableObject {
             let citiesData = try PropertyListEncoder().encode(cities)
             citiesStorage = citiesData
             //UserDefaults.standard.set(citiesData, forKey: "citiesList")
-        }
-        catch {
+        } catch {
             print("Error while decoding")
         }
     }

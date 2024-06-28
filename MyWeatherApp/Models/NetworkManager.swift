@@ -28,8 +28,7 @@ struct NetworkManager {
                 do {
                     let result = try JSONDecoder().decode(T.self, from: data!)
                     completion(.success(result))
-                }
-                catch let jsonError {
+                } catch let jsonError {
                     completion(.failure(jsonError))
                 }
             }

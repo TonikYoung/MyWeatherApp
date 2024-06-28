@@ -36,7 +36,7 @@ class LocationManager: NSObject, ObservableObject {
         }
     }
 
-    func startTracking(){
+    func startTracking() {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
     }

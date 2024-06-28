@@ -1,4 +1,3 @@
-///
 //  CitySelection.swift
 //  MyWeatherApp
 //
@@ -54,5 +53,3 @@ struct CitySelectionView: View {
         .listRowBackground(Color.white.blur(radius: 75).opacity(0.5))
     }
 }
-
-

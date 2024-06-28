@@ -21,18 +21,18 @@ struct ForecastModel {
     var aqiValue = "no"
     var alertsKey = "alerts"
     var alertsValue = "no"
-    
+
     func loadWeather(query: String, completion: @escaping (Result<Weather, Error>) -> Void) {
         weatherNetworkManager.get(
             scheme: scheme,
             host: host,
             path: path,
             params: [
-                idKey : userId,
-                cityKey : query,
-                daysKey : daysCount,
-                aqiKey : aqiValue,
-                alertsKey : alertsValue
+                idKey: userId,
+                cityKey: query,
+                daysKey: daysCount,
+                aqiKey: aqiValue,
+                alertsKey: alertsValue
             ], 
             completion: { result in completion(result) }
         )

@@ -164,6 +164,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				AAC942B52C2EB3A60012E7AE /* PBXTargetDependency */,
 			);
 			name = MyWeatherApp;
 			packageProductDependencies = (
@@ -200,6 +201,7 @@
 			mainGroup = 9CBE3B142BE431D8004D1FF8;
 			packageReferences = (
 				9CBE3B2E2BE43216004D1FF8 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				AAC942B22C2EAFE80012E7AE /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			productRefGroup = 9CBE3B1E2BE431D9004D1FF8 /* Products */;
 			projectDirPath = "";
@@ -248,6 +250,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AAC942B52C2EB3A60012E7AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = AAC942B42C2EB3A60012E7AE /* SwiftLintBuildToolPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9CBE3B292BE431DB004D1FF8 /* Debug */ = {
@@ -465,6 +474,14 @@
 				minimumVersion = 5.9.0;
 			};
 		};
+		AAC942B22C2EAFE80012E7AE /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -477,6 +494,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9CBE3B2E2BE43216004D1FF8 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = AlamofireDynamic;
+		};
+		AAC942B42C2EB3A60012E7AE /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAC942B22C2EAFE80012E7AE /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

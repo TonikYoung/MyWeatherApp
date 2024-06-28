@@ -1,4 +1,3 @@
-
 import SwiftUI
 import Foundation
 
@@ -33,7 +32,6 @@ func getShortDate(epoch: Int) -> String {
     }
     return traslatedShordDate
 }
-
 
 func getShortTime(time: String) -> String {
     let shortTime = time.suffix(5)
