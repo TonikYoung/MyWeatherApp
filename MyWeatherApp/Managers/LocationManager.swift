@@ -4,6 +4,7 @@
 //
 //  Created by abramovanto on 03.06.2024.
 //
+
 import Foundation
 import CoreLocation
 import Combine
@@ -12,6 +13,7 @@ class LocationManager: NSObject, ObservableObject {
     @Published var status: CLAuthorizationStatus?
     @Published var location: CLLocation?
     @Published var placemark: CLPlacemark?
+
     private let locationManager = CLLocationManager()
     private let geocoder = CLGeocoder()
 

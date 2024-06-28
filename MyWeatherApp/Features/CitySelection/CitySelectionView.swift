@@ -7,9 +7,14 @@
 import SwiftUI
 
 struct CitySelectionView: View {
-    @ObservedObject var viewModel = CitySelectionViewModel()
-    @Environment(\.dismiss) var dismiss
-    @Binding var cityFromList: String
+    @Binding 
+    var cityFromList: String
+
+    @Environment(\.dismiss)
+    private var dismiss
+
+    @StateObject
+    private var viewModel = CitySelectionViewModel()
 
     var body: some View {
         NavigationView {
@@ -32,6 +37,7 @@ struct CitySelectionView: View {
             .modeTextField()
             .padding(.trailing, 50)
             .onSubmit {
+                // Заменить на метод в VM
                 viewModel.add(name: viewModel.userInput)
                 viewModel.userInput = ""
             }
@@ -47,8 +53,8 @@ struct CitySelectionView: View {
             .onTapGesture {
                 cityFromList = city.name
                 dismiss()
-                }
             }
+        }
         .onDelete(perform: viewModel.delete(index:))
         .listRowBackground(Color.white.blur(radius: 75).opacity(0.5))
     }
