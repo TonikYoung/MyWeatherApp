@@ -18,11 +18,11 @@ struct GenericStorage<Value> {
             storage.setValue(newValue, forKey: key)
         }
     }
-    
+
     private let key: String
     private let defaultValue: Value
     private let storage: UserDefaults
-    
+
     init(
         wrappedValue defaultValue: Value,
         key: String,

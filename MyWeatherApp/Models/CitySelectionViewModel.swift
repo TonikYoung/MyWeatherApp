@@ -11,7 +11,7 @@ import SwiftUI
 final class CitySelectionViewModel: ObservableObject {
     @Published var cities: [CityItem] = []
     @Published var userInput = ""
-    @Published var backgroundColor = Color.setColor(colorName: "BaseViewColor")
+    @Published var backgroundColor = Color("BaseViewColor")
     @GenericStorage(key: "listOfCities") var citiesStorage = Data()
 
     init() {
