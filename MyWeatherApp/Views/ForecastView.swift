@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 struct ForecastView: View {
@@ -19,7 +18,6 @@ struct ForecastView: View {
         .accentColor(.white)
     }
 
-
     var searchWeather: some View {
         HStack {
             TextField("Введите название города", text: $forecastViewModel.query)
@@ -30,7 +28,7 @@ struct ForecastView: View {
                 .onAppear {
                     forecastViewModel.searchTask()
                 }
-            NavigationLink(destination: CitySelectionView(cityFromList: $forecastViewModel.query) , label: {
+            NavigationLink(destination: CitySelectionView(cityFromList: $forecastViewModel.query), label: {
                 Image(systemName: "plus.magnifyingglass")
                     .font(.system(size: 40))
             })
@@ -39,7 +37,7 @@ struct ForecastView: View {
     }
 
     var currentWeather: some View {
-        VStack{
+        VStack {
             Text(forecastViewModel.appData.city)
                 .modeText(textSize: 35)
                 .bold()
@@ -85,7 +83,7 @@ struct ForecastView: View {
     }
 
     var furuteForecastWeather: some View {
-        VStack{
+        VStack {
             Text("Прогноз на 3 дня")
                 .modeHeaderText(textSize: 17)
             List {

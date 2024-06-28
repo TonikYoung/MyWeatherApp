@@ -1,8 +1,5 @@
-
 import SwiftUI
 import Foundation
-
-//взял все что есть, если что добавлю потом
 
 struct Weather: Codable {
     var location: Location

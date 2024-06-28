@@ -11,14 +11,40 @@ import SwiftUI
 final class CitySelectionViewModel: ObservableObject {
     @Published var cities: [CityItem] = []
     @Published var userInput = ""
-    @Published var backgroundColor = Color.init(red: 47/255, green: 79/255, blue: 79/255)
+    @Published var backgroundColor = Color("BaseViewColor")
+    @GenericStorage(key: "listOfCities") var citiesStorage = Data()
+
+    init() {
+       /* guard let fetchedData = UserDefaults.standard.data(forKey: "citiesList") else {
+            return
+        }*/
+        do {
+            let fetchedCities = try PropertyListDecoder().decode([CityItem].self, from: citiesStorage)
+            cities = fetchedCities
+        } catch {
+            print("Error while decoding cities")
+        }
+    }
 
     func add(name: String) {
-        let newCity = CityItem(cityName: name)
+        let newCity = CityItem(name: name)
         cities.append(newCity)
+        saveData()
     }
-    
+
     func delete(index: IndexSet) {
         cities.remove(atOffsets: index)
+        //UserDefaults.standard.removeObject(forKey: "citiesList")
+        saveData()
+    }
+
+    func saveData() {
+        do {
+            let citiesData = try PropertyListEncoder().encode(cities)
+            citiesStorage = citiesData
+            //UserDefaults.standard.set(citiesData, forKey: "citiesList")
+        } catch {
+            print("Error while decoding")
+        }
     }
 }

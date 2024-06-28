@@ -1,7 +1,5 @@
-
 import Foundation
 
-//переделать элс ифы в свитч
 func getWeatherEmoji(code: Int) -> String {
     var weatherEmoji = "☀️"
     switch code {

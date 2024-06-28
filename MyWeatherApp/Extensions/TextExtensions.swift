@@ -14,9 +14,8 @@ extension Text {
         self.foregroundStyle(.white)
             .shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 2)
             .font(.system(size: CGFloat(textSize)))
-        
     }
-    
+
     func modeHeaderText(textSize: Int) -> some View {
         self.foregroundStyle(.white)
             .shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 2)
@@ -26,7 +25,6 @@ extension Text {
             .lineLimit(2)
     }
 }
-
 
 extension View {
     func modeTextView(size: Int) -> some View {

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//Дженерик способный принимать любое значение (строка, бул, инт и прочее)
+
 @propertyWrapper
 struct GenericStorage<Value> {
     var wrappedValue: Value {
@@ -18,11 +18,11 @@ struct GenericStorage<Value> {
             storage.setValue(newValue, forKey: key)
         }
     }
-    
+
     private let key: String
     private let defaultValue: Value
     private let storage: UserDefaults
-    
+
     init(
         wrappedValue defaultValue: Value,
         key: String,
