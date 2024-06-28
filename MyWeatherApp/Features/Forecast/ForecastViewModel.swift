@@ -27,14 +27,43 @@ final class ForecastViewModel: ObservableObject {
     @Published var isLoading = true
     @Published var query = ""
     @Published var defaultCityName = "Москва"
-    var locationManager = LocationManager()
-    var placemark: String { return("\(locationManager.placemark?.locality ?? defaultCityName)") }
-    var forecastModelObject = ForecastModel()
-    @State private var cityFromList = ""
-    private var subscribers: AnyCancellable?
-    private var storeSubscrobers: Set<AnyCancellable> = []
 
-    func fetchWeather(city: String) {
+    private var locationManager = LocationManager()
+    private var forecastModelObject = ForecastModel()
+
+    private var placemark: String { return("\(locationManager.placemark?.locality ?? defaultCityName)") }
+    private var placemarkSubscription: AnyCancellable?
+    private var storeSubscribers: Set<AnyCancellable> = []
+
+    init() {
+        locationManager.$status
+            .sink { [weak self] status in
+
+                guard let self, let status else {
+                    return
+                }
+
+                placemarkSubscription?.cancel()
+                switch status {
+                case .notDetermined, .restricted, .denied:
+                    fetchWeather(city: defaultCityName)
+                case .authorizedWhenInUse, .authorizedAlways:
+                    subscribeToPlacemarks()
+                }
+            }
+            .store(in: &storeSubscribers)
+    }
+
+    func loadForecast() {
+        guard !query.isEmpty else {
+            return
+        }
+
+        fetchWeather(city: query)
+        query = ""
+    }
+
+    private func fetchWeather(city: String) {
         forecastModelObject.loadWeather(query: city) { [self] result in
             switch result {
             case .success(let weather):
@@ -60,39 +89,8 @@ final class ForecastViewModel: ObservableObject {
         }
     }
 
-    func searchTask() {
-        if query != "" {
-            fetchWeather(city: query)
-            query = ""
-        } else {
-            return
-        }
-    }
-
-    init() {
-        locationManager.$status
-            .sink { [weak self] status in
-
-                guard let self else {
-                    return
-                }
-
-                guard let status else {
-                    return
-                }
-                subscribers?.cancel()
-                switch status {
-                case .notDetermined, .restricted, .denied:
-                    fetchWeather(city: defaultCityName)
-                case .authorizedWhenInUse, .authorizedAlways:
-                    subscribeToPlacemarks()
-                }
-            }
-            .store(in: &storeSubscrobers)
-    }
-
-    func subscribeToPlacemarks() {
-        subscribers = locationManager.$placemark.sink { [weak self] placemark in
+    private func subscribeToPlacemarks() {
+        placemarkSubscription = locationManager.$placemark.sink { [weak self] placemark in
             guard let self else {
                 return
             }

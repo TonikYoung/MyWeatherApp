@@ -12,7 +12,9 @@ final class CitySelectionViewModel: ObservableObject {
     @Published var cities: [CityItem] = []
     @Published var userInput = ""
     @Published var backgroundColor = Color("BaseViewColor")
-    @GenericStorage(key: "listOfCities") var citiesStorage = Data()
+
+    @GenericStorage(key: "listOfCities")
+    private var citiesStorage = Data()
 
     init() {
        /* guard let fetchedData = UserDefaults.standard.data(forKey: "citiesList") else {
@@ -38,7 +40,7 @@ final class CitySelectionViewModel: ObservableObject {
         saveData()
     }
 
-    func saveData() {
+    private func saveData() {
         do {
             let citiesData = try PropertyListEncoder().encode(cities)
             citiesStorage = citiesData
