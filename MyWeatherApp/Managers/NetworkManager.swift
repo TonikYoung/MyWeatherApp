@@ -8,7 +8,13 @@
 import Foundation
 
 struct NetworkManager {
-    func get<T: Decodable>(scheme: String, host: String, path: String, params: [String: String], completion: @escaping (Result<T, Error>) -> Void) {
+    func get<T: Decodable>(
+        scheme: String,
+        host: String,
+        path: String,
+        params: [String: String],
+        completion: @escaping (Result<T, Error>) -> Void
+    ) {
         var queryItems = [URLQueryItem]()
         for (key, value) in params {
             queryItems.append(URLQueryItem(name: key, value: value))

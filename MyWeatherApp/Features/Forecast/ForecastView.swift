@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct ForecastView: View {
-    @StateObject private var forecastViewModel = ForecastViewModel()
+    @StateObject 
+    private var forecastViewModel = ForecastViewModel()
 
     var body: some View {
         NavigationView {
@@ -9,7 +10,7 @@ struct ForecastView: View {
                 searchWeather
                 currentWeather
                 dailyForecastWeather
-                furuteForecastWeather
+                futureForecastWeather
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .background(forecastViewModel.backgroundColor)
@@ -18,25 +19,27 @@ struct ForecastView: View {
         .accentColor(.white)
     }
 
-    var searchWeather: some View {
+    private var searchWeather: some View {
         HStack {
             TextField("Введите название города", text: $forecastViewModel.query)
                 .modeTextField()
                 .onSubmit {
-                    forecastViewModel.searchTask()
+                    forecastViewModel.loadForecast()
                 }
                 .onAppear {
-                    forecastViewModel.searchTask()
+                    forecastViewModel.loadForecast()
                 }
-            NavigationLink(destination: CitySelectionView(cityFromList: $forecastViewModel.query), label: {
+
+            NavigationLink(destination: CitySelectionView(cityFromList: $forecastViewModel.query)) {
                 Image(systemName: "plus.magnifyingglass")
                     .font(.system(size: 40))
-            })
+            }
+
             Spacer()
         }
     }
 
-    var currentWeather: some View {
+    private var currentWeather: some View {
         VStack {
             Text(forecastViewModel.appData.city)
                 .modeText(textSize: 35)
@@ -54,7 +57,7 @@ struct ForecastView: View {
         }
     }
 
-    var dailyForecastWeather: some View {
+    private var dailyForecastWeather: some View {
         VStack {
             Text("Прогноз на весь день")
                 .modeHeaderText(textSize: 17)
@@ -82,7 +85,7 @@ struct ForecastView: View {
         }
     }
 
-    var furuteForecastWeather: some View {
+    private var futureForecastWeather: some View {
         VStack {
             Text("Прогноз на 3 дня")
                 .modeHeaderText(textSize: 17)
